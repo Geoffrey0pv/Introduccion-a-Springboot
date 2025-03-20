@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1 th:text="${greeting}"> HOLA MUNDO </h1>
+
+<form th:action="@{/student}" method="post" th:object="${student}">
+
+    <!-- Form data -->
+    <input type="text" th:field="*{name}">
+    <input type="text" th:field="*{code}">
+    <input type="text" th:field="*{program}">
+    <!-- Submit action -->
+    <button >
+        Crear
+    </button>
+
+</form>
+
+<h1> Crear cursos </h1>
+<form>
+
+
+</form>
+
+<!-- Supongamos que "students" es un List<Student> -->
+<ul>
+    <li th:each="st : ${students}">
+        <span th:text="${st.name}"></span>
+    </li>
+</ul>
+
+
+</body>
+</html>
