@@ -1,42 +1,30 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Estudiantes</title>
+    <link rel="stylesheet" th:href="@{/css/student.css}">
 </head>
 <body>
+<div class="container">
+    <h1>Lista de Estudiantes</h1>
 
-<h1 th:text="${greeting}"> HOLA MUNDO </h1>
+    <!-- Lista de estudiantes -->
+    <ul>
+        <li th:each="st : ${students}">
+            <a th:href="@{/student/{id}(id=${st.id})}" th:text="${st.name}">Nombre del Estudiante</a>
+        </li>
+    </ul>
 
-<form th:action="@{/student}" method="post" th:object="${student}">
-
-    <!-- Form data -->
-    <input type="text" th:field="*{name}">
-    <input type="text" th:field="*{code}">
-    <input type="text" th:field="*{program}">
-    <!-- Submit action -->
-    <button >
-        Crear
-    </button>
-
-</form>
-
-<h1> Crear cursos </h1>
-<form>
-
-
-</form>
-
-<!-- Supongamos que "students" es un List<Student> -->
-<ul>
-    <li th:each="st : ${students}">
-        <span th:text="${st.name}"></span>
-    </li>
-</ul>
-
-
+    <!-- Formulario para crear un nuevo estudiante -->
+    <h2>Crear Estudiante</h2>
+    <form th:action="@{/student}" method="post" th:object="${student}">
+        <input type="text" placeholder="Nombre" th:field="*{name}">
+        <input type="text" placeholder="Código" th:field="*{code}">
+        <input type="text" placeholder="Programa" th:field="*{program}">
+        <button type="submit">Crear</button>
+    </form>
+</div>
 </body>
 </html>

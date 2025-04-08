@@ -5,6 +5,5 @@ import org.example.introspring.entity.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Integer>  {
-
-
+    Professor findById(Long id);
 }

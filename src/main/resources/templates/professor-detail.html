@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Profesor</title>
+    <link rel="stylesheet" th:href="@{/css/professor.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${professor.name}">Nombre del Profesor</h1>
+    <h2>Cursos a cargo</h2>
+    <ul class="course-list">
+        <li th:each="course : ${professor.courses}">
+            <a th:href="@{/course/{id}(id=${course.id})}" th:text="${course.name}">Nombre del Curso</a>
+        </li>
+    </ul>
+    <a th:href="@{/course/list}" class="return-link">Volver a la lista de Materias</a>
+</div>
+</body>
+</html>

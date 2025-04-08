@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+<h1>Registro de usuario</h1>
+<form th:action="@{/signup}" method="post" th:object="${user}">
+    <input type="email" th:field="*{email}" placeholder="Correo electrónico" required>
+    <input type="password" th:field="*{password}" placeholder="Contraseña" required>
+    <!-- Opcional: selector para asignar rol. Luego podrás editar la lógica para asignar roles -->
+    <button type="submit">Registrarse</button>
+</form>
+</body>
+</html>

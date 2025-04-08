@@ -55,8 +55,13 @@ VALUES
     -- Proyecto Integrador I
     (21, 7, 5), (22, 8, 5), (23, 11, 5), (24, 15, 5), (25, 20, 5);
 
+-- Insertar cursos
+INSERT INTO A00380495_user (id, username, password)
+VALUES (1, 'geoffrey0pv', 'ABCDEGF');
+
 
 SELECT setval('professors_seq', (SELECT MAX(id) FROM professors));
 SELECT setval('students_seq', (SELECT MAX(id) FROM students));
 SELECT setval('courses_seq', (SELECT MAX(id) FROM courses));
 SELECT setval('enrollments_seq', (SELECT MAX(id) FROM enrollments));
+SELECT setval('A00380495_user_id_seq',COALESCE((SELECT MAX(id) FROM A00380495_user), 1));

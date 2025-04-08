@@ -40,4 +40,12 @@ public class StudentServiceImpl implements StudentService {
         Pageable pageable = PageRequest.of(page, pageSize);
         return studentRepository.findAll(pageable);
     }
+    @Override
+    public Student findByCode(int code) {
+        return studentRepository.getStudentById(code);
+    }
+    @Override
+    public List<Student> getAll() {
+        return studentRepository.findAll();
+    }
 }

@@ -5,10 +5,7 @@ import org.example.introspring.entity.Student;
 import org.example.introspring.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 
@@ -33,6 +30,21 @@ public class StudentsController {
         //almacenar
         studentService.createStudent(student);
         return "redirect:/student";
+    }
+
+    // Muestra la lista de estudiantes
+    @GetMapping("/students")
+    public String listStudents(Model model) {
+        var student = studentService.getAll();
+        model.addAttribute("students", student);
+        return "students"; // Apunta al template students.html
+    }
+
+    @GetMapping("/{id}")
+    public String detail(Model model, @PathVariable("id") int id){
+        var student = studentService.findByCode(id);
+        model.addAttribute("student", student);
+        return "studentdetail";
     }
 
 }

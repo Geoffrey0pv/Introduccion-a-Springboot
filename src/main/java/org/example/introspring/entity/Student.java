@@ -1,6 +1,8 @@
 package org.example.introspring.entity;
 
 import jakarta.persistence.*;
+
+import javax.security.auth.Subject;
 import java.util.List;
 
 @Entity
@@ -17,6 +19,7 @@ public class Student {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Enrollment> enrollments;
+
 
     // Getters y setters
     public Long getId() {

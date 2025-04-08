@@ -1,0 +1,118 @@
+/* Reset de márgenes y padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general del body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Encabezados */
+h1 {
+    color: #4a90e2;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+/* Estilo de párrafos */
+p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Estilos para formularios (si se reutilizan en otras pantallas) */
+form {
+    margin-bottom: 30px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 12px 25px;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #357ab8;
+}
+
+/* Estilo para listas generales */
+ul {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilos para la lista de materias */
+.subject-list {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.subject-list li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.subject-list li:last-child {
+    border-bottom: none;
+}
+
+/* Estilo para enlaces */
+a {
+    text-decoration: none;
+    color: #4a90e2;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para el enlace de retorno */
+.return-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: bold;
+}

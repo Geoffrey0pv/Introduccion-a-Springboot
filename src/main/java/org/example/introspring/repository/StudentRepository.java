@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> { // Cambiado a Long
     List<Student> findByProgram(String program);
-    Page<Student> findAll(Pageable pageable);
+    Student getStudentById(long id);
+    List<Student> findAll();
 }
