@@ -1,5 +1,5 @@
 -- Insertar estudiantes
-INSERT INTO A00380495_students (id, code, name, program) VALUES
+INSERT INTO students (id, code, name, program) VALUES
                                                    (1, 'A00001', 'Juan Pérez', 'SIS'),
                                                    (2, 'A00002', 'María Gómez', 'SIS'),
                                                    (3, 'A00003', 'Miguel Rodríguez', 'TEL'),
@@ -22,7 +22,7 @@ INSERT INTO A00380495_students (id, code, name, program) VALUES
                                                    (20, 'A00020', 'Fernanda Espinosa', 'ENI');
 
 -- Insertar profesores
-INSERT INTO A00380495_profesor (id, name) VALUES
+INSERT INTO professors (id, name) VALUES
                                       (1, 'Gabriel Tamura'),
                                       (2, 'Ángela Villota'),
                                       (3, 'Andrés Aristizábal'),
@@ -30,7 +30,7 @@ INSERT INTO A00380495_profesor (id, name) VALUES
                                       (5, 'Claudia Castiblanco');
 
 -- Insertar cursos
-INSERT INTO A00380495_course (id, name, professor_id) VALUES
+INSERT INTO courses (id, name, professor_id) VALUES
                                                  (1, 'Ingeniería de Software IV', 1),
                                                  (2, 'Computación y estructuras discretas III', 2),
                                                  (3, 'Computación y estructuras discretas II', 3),
@@ -54,3 +54,14 @@ VALUES
 
     -- Proyecto Integrador I
     (21, 7, 5), (22, 8, 5), (23, 11, 5), (24, 15, 5), (25, 20, 5);
+
+-- Insertar cursos
+INSERT INTO A00380495_user (id, username, password)
+VALUES (1, 'geoffrey0pv', 'ABCDEGF');
+
+
+SELECT setval('professors_seq', (SELECT MAX(id) FROM professors));
+SELECT setval('students_seq', (SELECT MAX(id) FROM students));
+SELECT setval('courses_seq', (SELECT MAX(id) FROM courses));
+SELECT setval('enrollments_seq', (SELECT MAX(id) FROM enrollments));
+SELECT setval('A00380495_user_id_seq',COALESCE((SELECT MAX(id) FROM A00380495_user), 1));

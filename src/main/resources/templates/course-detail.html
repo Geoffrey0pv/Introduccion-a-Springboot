@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Materia</title>
+    <link rel="stylesheet" th:href="@{/css/course.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${course.name}">Nombre de la Materia</h1>
+    <p>
+        <strong>Profesor:</strong>
+        <!-- Convertimos el nombre en un enlace que dirige al detalle del profesor -->
+        <a th:href="@{/professor/{id}(id=${course.professor.id})}"
+           th:text="${course.professor.name}">Nombre del Profesor</a>
+    </p>
+    <h2>Estudiantes Matriculados</h2>
+    <ul class="student-list">
+        <li th:each="enrollment : ${course.enrollments}">
+            <span th:text="${enrollment.student.name}">Nombre del Estudiante</span>
+        </li>
+    </ul>
+    <a th:href="@{/course/list}" class="return-link">Volver a la lista de Materias</a>
+</div>
+</body>
+</html>

@@ -27,10 +27,10 @@ public class EnrollmentsService {
 
     @Transactional
     public void enrollStudent(long studentId, long courseId) {
-        Student student = studentRepository.findById((int) studentId)
+        Student student = studentRepository.findById( studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
-        Course course = courseRepository.findById((int) courseId)
+        Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
         Enrollment enrollment = new Enrollment();
@@ -46,10 +46,16 @@ public class EnrollmentsService {
     }
 
     public List<Course> getCoursesByStudentId(Long studentId) {
-        return enrollmentRepository.findByStudentId(studentId)
+        return enrollmentRepository.findByStudent_Id(studentId)
                 .stream()
                 .map(Enrollment::getCourse)  // Extrae solo los cursos de las inscripciones
                 .collect(Collectors.toList());
     }
 
+    public List<Student> getStudentsEnrolledInCourse(long courseId) {
+        List<Enrollment> enrollments = enrollmentRepository.findByCourse_Id(courseId);
+        return enrollments.stream()
+                .map(Enrollment::getStudent)
+                .collect(Collectors.toList());
+    }
 }
