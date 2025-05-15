@@ -1,5 +1,6 @@
 package org.example.introspring.service;
 
+import org.example.introspring.dto.CourseDTO;
 import org.example.introspring.entity.Course;
 
 import java.util.List;
@@ -7,11 +8,9 @@ import java.util.List;
 public interface CourseService {
 
 
-    Course createCourse(Course course);
+    CourseDTO createCourse(CourseDTO courseDTO);
 
-    List<Course> listCourseOfStudent(long studentId);
-
-    List<Course> getAllCourses();
+    List<CourseDTO> getAllCourses();
 
     Course getCourseById(long id);
 

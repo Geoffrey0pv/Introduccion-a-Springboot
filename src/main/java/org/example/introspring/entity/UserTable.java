@@ -17,8 +17,25 @@ public class UserTable {
 
     private String password;
 
+    private String email;
 
-    // Getters y setters
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+// Getters y setters
 
     public String getUsername() {
         return username;

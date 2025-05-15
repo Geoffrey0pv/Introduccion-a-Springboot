@@ -1,6 +1,8 @@
 package org.example.introspring.service;
 
+import org.example.introspring.dto.CourseDTO;
 import org.example.introspring.entity.Course;
+import org.example.introspring.mapper.CourseMapper;
 import org.example.introspring.repository.CourseRepository;
 import org.example.introspring.repository.EnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +19,22 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;  // Añadimos @Autowired
 
+    @Autowired
+    private CourseMapper courseMapper;  // Añadimos @Autowired
+
     @Override
-    public Course createCourse(Course course){
-        if(course.getName() == null || course.getName().trim().isEmpty()){
+    public CourseDTO createCourse(CourseDTO courseDTO){
+        var entity = courseMapper.toEntity(courseDTO);
+        if(entity.getName() == null || entity.getName().trim().isEmpty()){
             throw new IllegalArgumentException("El nombre del curso es obligatorio");
         }
-        return courseRepository.save(course);
+        Course courseEntity = courseRepository.save(entity);
+        return courseMapper.toDTO(courseEntity);
     }
 
     @Override
-    public List<Course> listCourseOfStudent(long studentId){
-        var enrollments = enrollmentRepository.findByStudent_Id(studentId);
-        return enrollments.stream()
-                .map(enrollment -> enrollment.getCourse())
-                .toList();
-    }
-
-    @Override
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseDTO> getAllCourses() {
+        return courseRepository.findAll().stream().map(entity -> courseMapper.toDTO(entity)).toList();
     }
 
     @Override
