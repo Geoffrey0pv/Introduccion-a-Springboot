@@ -1,9 +1,12 @@
 package org.example.introspring.repository;
 
-import org.example.introspring.entity.Course;
 import org.example.introspring.entity.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProfessorRepository extends JpaRepository<Professor, Integer>  {
-    Professor findById(Long id);
+import java.util.Optional;
+
+@Repository
+public interface ProfessorRepository extends JpaRepository<Professor, Long>  {
+    Optional<Professor> findById(Long id);
 }

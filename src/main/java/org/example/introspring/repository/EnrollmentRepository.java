@@ -2,15 +2,17 @@ package org.example.introspring.repository;
 
 import org.example.introspring.entity.Enrollment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
+import java.util.Optional;
 
-public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
+@Repository
+public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
 
-    // Obtener las inscripciones de un estudiante
     List<Enrollment> findByStudent_Id(Long studentId);
 
-    // Obtener las inscripciones de un curso
     List<Enrollment> findByCourse_Id(Long courseId);
 
-    // Si necesitas obtener cursos, hazlo en CourseRepository o con @Query
+    Optional<Enrollment> findByCourse_IdAndStudent_Id(Long courseId, Long studentId);
 }

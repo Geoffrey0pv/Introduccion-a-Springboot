@@ -2,6 +2,7 @@ package org.example.introspring.security;
 
 import org.example.introspring.entity.UserTable;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -18,7 +19,9 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return user.getRoles().stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .toList();
     }
 
     @Override

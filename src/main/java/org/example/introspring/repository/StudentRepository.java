@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> { // Cambiado a Long
+public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByProgram(String program);
     Student getStudentById(long id);
     List<Student> findAll();
+    List<Student> findByProgramIgnoreCase(String program);
+    Page<Student> findByProgramIgnoreCase(String program, Pageable pageable);
+
 }

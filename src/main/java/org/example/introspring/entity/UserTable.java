@@ -1,12 +1,12 @@
 package org.example.introspring.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CascadeType;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "A00380495_user")
+@Table(name = "users")
 public class UserTable {
 
     @Id
@@ -19,13 +19,20 @@ public class UserTable {
 
     private String email;
 
-    public String getEmail() {
-        return email;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name           = "user_roles",
+            joinColumns    = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public Set<Role> getRoles() {return roles;}
+    public void setRoles(Set<Role> roles) {this.roles = roles;}
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
 
     public Long getId() {
         return id;
@@ -34,8 +41,6 @@ public class UserTable {
     public void setId(Long id) {
         this.id = id;
     }
-
-// Getters y setters
 
     public String getUsername() {
         return username;

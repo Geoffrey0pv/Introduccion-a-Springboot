@@ -8,20 +8,19 @@ import org.example.introspring.service.CourseService;
 import org.example.introspring.service.EnrollmentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/courses")
+@RequestMapping("api/v1/courses")
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
-
 
     @Autowired
     private EnrollmentsService enrollmentsService;
@@ -47,5 +46,24 @@ public class CourseController {
                 .collect(Collectors.toList());
         // Devolvemos la lista de estudiantes como respuesta
         return ResponseEntity.ok(studentDTOs);
+    }
+    @PostMapping
+    public ResponseEntity<CourseDTO> createCourse(
+            @RequestBody CourseDTO dto,
+            UriComponentsBuilder uriBuilder) {
+
+        CourseDTO created = courseService.createCourse(dto);
+
+        URI location = uriBuilder
+                .path("/courses/{id}")
+                .buildAndExpand(created.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(created);
+    }
+    @GetMapping("/count-students")
+    public ResponseEntity<List<CourseDTO>> listCoursesWithCount() {
+        var result = courseService.getCoursesWithStudentCount();
+        return ResponseEntity.ok(result);
     }
 }

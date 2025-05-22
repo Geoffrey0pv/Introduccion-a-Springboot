@@ -3,9 +3,13 @@ package org.example.introspring.dto;
 public class CourseDTO {
     private long id;
     private String name;
-    private Long professorId; // solo el ID del profesor
+    private Long professorId;
+    private int countStudents;
 
-    //Getters y Setters
+    public int getCountStudents() {return countStudents;}
+
+    public void setCountStudents(int countStudents) {this.countStudents = countStudents;}
+
     public long getId() {
         return id;
     }

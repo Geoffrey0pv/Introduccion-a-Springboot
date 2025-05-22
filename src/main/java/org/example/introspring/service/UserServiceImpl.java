@@ -5,7 +5,6 @@ import org.example.introspring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.example.introspring.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,9 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserTable findByEmail(String email){
-        return userRepository.findByUsername(email).orElseThrow(
-                () -> new RuntimeException()
-        );
+    public UserTable findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found: " + username));
     }
 }

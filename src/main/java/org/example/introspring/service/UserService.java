@@ -4,5 +4,5 @@ import org.example.introspring.entity.UserTable;
 
 public interface UserService {
     UserTable save(UserTable user);
-    UserTable findByEmail(String username);
+    UserTable findByUsername(String username);
 }

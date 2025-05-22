@@ -5,6 +5,7 @@ import org.example.introspring.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
@@ -19,7 +20,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public Professor getProfessorById(Long id) {
+    public Optional<Professor> getProfessorById(Long id) {
         // Recuperamos el profesor por id. Si no existe, se retorna null.
         return professorRepository.findById(id);
     }

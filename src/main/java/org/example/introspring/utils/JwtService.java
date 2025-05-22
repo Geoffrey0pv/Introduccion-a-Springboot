@@ -27,25 +27,38 @@ public class JwtService {
     public String generateToken(UserDetails userDetails) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + 1000L * 60L * expirationMinutes);
+        Map<String,Object> claims = createClaims(userDetails);
 
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(userDetails.getUsername())
-                .addClaims(createClaims(userDetails))
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
                 .compact();
     }
+    public boolean isTokenValid(String token) {
+        try {
+            return !isTokenExpired(token);
+        } catch (JwtException e) {
+            return false;
+        }
+    }
+    public String extractUsername(String token) {
+        return extractAllClaims(token).getSubject();
+    }
     public Map<String, Object> createClaims(UserDetails userDetails){
         Map<String, Object> claims = new HashMap<>();
-        claims.put("email", userDetails.getUsername());
+        claims.put("username", userDetails.getUsername());
         claims.put("roles", userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));
         return claims;
     }
-
+    private boolean isTokenExpired(String token) {
+        return extractAllClaims(token).getExpiration().before(new Date());
+    }
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
