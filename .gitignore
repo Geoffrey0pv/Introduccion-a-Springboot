@@ -1,4 +1,4 @@
-# ======================================
+# ====================================== 
 # Ignora archivos de sistema y editores
 # ======================================
 .DS_Store
@@ -9,53 +9,53 @@ Thumbs.db
 # Reglas para Spring Boot
 # =======================
 # Carpetas de compilación de Maven/Gradle
-/backend/target/
-/backend/build/
-/backend/.gradle/
-/backend/.mvn/
+/Backend/target/
+/Backend/build/
+/Backend/.gradle/
+/Backend/.mvn/
 
 # Dependencias empaquetadas
-/backend/*.jar
-/backend/*.war
+/Backend/*.jar
+/Backend/*.war
 
 # Archivos generados
-/backend/**/*.class
-/backend/*.iml
-/backend/*.ipr
-/backend/*.iws
-/backend/.idea/
-/backend/.settings/
-/backend/.project
-/backend/.classpath
+/Backend/**/*.class
+/Backend/*.iml
+/Backend/*.ipr
+/Backend/*.iws
+/Backend/.idea/
+/Backend/.settings/
+/Backend/.project
+/Backend/.classpath
 
 # Logs y metadatos
-/backend/logs/
-/backend/*.log
+/Backend/logs/
+/Backend/*.log
 
 # ==================
 # Reglas para React
 # ==================
 # Dependencias
-/frontend/node_modules/
+/Fronted/node_modules/
 
-/frontend/.pnp/
-/frontend/.pnp.js
+/Fronted/.pnp/
+/Fronted/.pnp.js
 
 # Salidas de build
-/frontend/build/
-/frontend/dist/
+/Fronted/build/
+/Fronted/dist/
 
 # Archivos de entorno
-/frontend/.env
-/frontend/.env.local
-/frontend/.env.development.local
-/frontend/.env.test.local
-/frontend/.env.production.local
+/Fronted/.env
+/Fronted/.env.local
+/Fronted/.env.development.local
+/Fronted/.env.test.local
+/Fronted/.env.production.local
 
 # IDEs y editores
-/frontend/.cache/
-/frontend/.eslintcache
-/frontend/*.log
+/Fronted/.cache/
+/Fronted/.eslintcache
+/Fronted/*.log
 
 # ===================
 # Reglas globales Git
