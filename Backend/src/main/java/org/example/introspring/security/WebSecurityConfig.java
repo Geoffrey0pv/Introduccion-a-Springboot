@@ -34,12 +34,14 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/api/v1/**").hasAnyAuthority("ADMIN", "PROFESSOR")
+                        .requestMatchers("/ws/chat").permitAll()
                         .anyRequest().authenticated()
                 ).exceptionHandling(eh -> eh
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
@@ -64,8 +66,8 @@ public class WebSecurityConfig {
         config.setAllowedOrigins(List.of("http://localhost:5173"));
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization","Content-Type"));
-        config.setExposedHeaders(List.of("Location"));     // si envías Location o custom headers
-        config.setAllowCredentials(true);                  // para enviar cookies si las usas
+        config.setExposedHeaders(List.of("Location"));
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();

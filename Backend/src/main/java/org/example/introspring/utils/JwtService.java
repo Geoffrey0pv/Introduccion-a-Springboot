@@ -26,7 +26,7 @@ public class JwtService {
 
     public String generateToken(UserDetails userDetails) {
         Date now = new Date();
-        Date expiry = new Date(now.getTime() + 1000L * 60L * expirationMinutes);
+        Date expiry = new Date(now.getTime() + 350000L * 60L * expirationMinutes);
         Map<String,Object> claims = createClaims(userDetails);
 
         return Jwts.builder()

@@ -1,6 +1,7 @@
 package org.example.introspring.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ public class EnrollmentController {
         return ResponseEntity.created(location).body(dto);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('PROFESSOR','ADMIN')")
     public ResponseEntity<Void> deleteEnrollment(@PathVariable Long id) {
         enrollmentService.deleteEnrollment(id);
         return ResponseEntity.noContent().build();   // 204 No Content

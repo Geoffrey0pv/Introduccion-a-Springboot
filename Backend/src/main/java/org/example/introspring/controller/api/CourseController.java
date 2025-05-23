@@ -8,6 +8,7 @@ import org.example.introspring.service.CourseService;
 import org.example.introspring.service.EnrollmentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -34,17 +35,16 @@ public class CourseController {
         return ResponseEntity.status(200).body(coursesList);
     }
 
-    // Endpoint: GET /courses/{id}/students
+    @PreAuthorize("hasAnyRole('PROFESSOR','ADMIN')")
     @GetMapping("/{courseId}/students")
     public ResponseEntity<List<StudentDTO>> getStudentsByCourse(@PathVariable("courseId") long courseId) {
-        // Utilizamos el servicio para obtener los estudiantes inscritos en el curso
+
         List<Student> students = enrollmentsService.getStudentsEnrolledInCourse(courseId);
 
-        // Convertimos las entidades a DTO
         List<StudentDTO> studentDTOs = students.stream()
                 .map(studentMapper::toDTO)
                 .collect(Collectors.toList());
-        // Devolvemos la lista de estudiantes como respuesta
+
         return ResponseEntity.ok(studentDTOs);
     }
     @PostMapping
