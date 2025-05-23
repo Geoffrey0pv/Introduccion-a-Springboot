@@ -1,0 +1,74 @@
+# ======================================
+# Ignora archivos de sistema y editores
+# ======================================
+.DS_Store
+Thumbs.db
+*.log
+
+# =======================
+# Reglas para Spring Boot
+# =======================
+# Carpetas de compilación de Maven/Gradle
+/backend/target/
+/backend/build/
+/backend/.gradle/
+/backend/.mvn/
+
+# Dependencias empaquetadas
+/backend/*.jar
+/backend/*.war
+
+# Archivos generados
+/backend/**/*.class
+/backend/*.iml
+/backend/*.ipr
+/backend/*.iws
+/backend/.idea/
+/backend/.settings/
+/backend/.project
+/backend/.classpath
+
+# Logs y metadatos
+/backend/logs/
+/backend/*.log
+
+# ==================
+# Reglas para React
+# ==================
+# Dependencias
+/frontend/node_modules/
+
+/frontend/.pnp/
+/frontend/.pnp.js
+
+# Salidas de build
+/frontend/build/
+/frontend/dist/
+
+# Archivos de entorno
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# IDEs y editores
+/frontend/.cache/
+/frontend/.eslintcache
+/frontend/*.log
+
+# ===================
+# Reglas globales Git
+# ===================
+# Archivos comprimidos
+*.zip
+*.tar.gz
+*.rar
+
+# Certificados y claves
+*.pem
+*.key
+
+# Archivos de usuario local de Git
+/.idea/
+/.vscode/
